@@ -15,6 +15,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.soinve.bpc.BaseActivity;
 import com.soinve.bpc.R;
 import com.soinve.bpc.dao.DBHelper;
 import com.soinve.bpc.entity.BloodPressure;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ViewCureActivity extends AppCompatActivity {
+public class ViewCureActivity extends BaseActivity {
 
     private LineChart bloodChart;
 

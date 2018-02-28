@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.soinve.bpc.BaseActivity;
 import com.soinve.bpc.R;
 import com.soinve.bpc.dao.DBHelper;
 import com.soinve.bpc.entity.BloodPressure;
@@ -15,7 +16,7 @@ import com.soinve.bpc.entity.BloodPressure;
 import java.util.Date;
 import java.util.List;
 
-public class AddInfoActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddInfoActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText highPressEt;
     private EditText lowPressEt;

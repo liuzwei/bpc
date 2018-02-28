@@ -2,6 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.soinve.bpc">
 
+    <!-- 检测网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取mac地址作为用户的备用唯一标识 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取用户手机的IMEI，用来唯一的标识用户 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 缓存资源优先存入SDcard -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许应用程序联网，以便向我们的服务器端发送数据 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -22,6 +36,9 @@
         </activity>
         <activity android:name=".controller.AddInfoActivity" />
         <activity android:name=".controller.ViewCureActivity" android:screenOrientation="landscape"></activity>
+
+        <meta-data android:name="UMENG_APPKEY" android:value="5a9657f1b27b0a13000001a1" />
+        <meta-data android:value="Yingyongbao" android:name="UMENG_CHANNEL"/>
     </application>
 
 </manifest>
