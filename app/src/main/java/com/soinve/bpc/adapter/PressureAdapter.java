@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.soinve.bpc.R;
 import com.soinve.bpc.entity.BloodPressure;
+import com.soinve.bpc.listener.OnItemClickListener;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -21,8 +22,11 @@ public class PressureAdapter extends RecyclerView.Adapter<PressureAdapter.ViewHo
     //数据
     private List<BloodPressure> mData;
 
-    public PressureAdapter(List<BloodPressure> mData){
+    private OnItemClickListener itemClickListener;
+
+    public PressureAdapter(List<BloodPressure> mData, OnItemClickListener itemClickListener){
         this.mData = mData;
+        this.itemClickListener = itemClickListener;
     }
 
     public void updateData(List<BloodPressure> data) {
@@ -36,11 +40,12 @@ public class PressureAdapter extends RecyclerView.Adapter<PressureAdapter.ViewHo
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_rv_item, parent, false);
         // 实例化viewholder
         ViewHolder viewHolder = new ViewHolder(v);
+
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         BloodPressure bloodPressure = mData.get(position);
         holder.hightPressTv.setText(bloodPressure.getHighPressure().toString());
@@ -50,6 +55,15 @@ public class PressureAdapter extends RecyclerView.Adapter<PressureAdapter.ViewHo
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm:ss");
 
         holder.timeTv.setText(sdf.format(bloodPressure.getCreateTime()));
+
+        //绑定长摁事件
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                itemClickListener.onItemLongClick(view, position);
+                return true;
+            }
+        });
 
     }
 

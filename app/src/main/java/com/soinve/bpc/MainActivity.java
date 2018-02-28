@@ -20,11 +20,14 @@ import com.soinve.bpc.controller.AddInfoActivity;
 import com.soinve.bpc.controller.ViewCureActivity;
 import com.soinve.bpc.dao.DBHelper;
 import com.soinve.bpc.entity.BloodPressure;
+import com.soinve.bpc.listener.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener{
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener, OnItemClickListener{
 
     private RecyclerView recyclerView;
     private PressureAdapter pressureAdapter;
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
     private void initData() {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         dataInfo.addAll(getData());
-        pressureAdapter = new PressureAdapter(dataInfo);
+        pressureAdapter = new PressureAdapter(dataInfo, this);
     }
 
     private void initView(){
@@ -129,5 +132,33 @@ public class MainActivity extends AppCompatActivity implements Toolbar.OnMenuIte
                 break;
         }
         return false;
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+
+    }
+
+    @Override
+    public void onItemLongClick(View view, final int position) {
+        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("确定删除?")
+                .setContentText("删除后不可恢复!")
+                .setConfirmText("是,确认删除!")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+
+                        BloodPressure bloodPressure = dataInfo.remove(position);
+                        //删除本地数据库数据
+                        DBHelper.getInstance(MainActivity.this).deletePressInfo(bloodPressure);
+                        //刷新页面Adatper
+                        pressureAdapter.updateData(dataInfo);
+
+                        sDialog.dismissWithAnimation();
+
+                    }
+                })
+                .show();
     }
 }
