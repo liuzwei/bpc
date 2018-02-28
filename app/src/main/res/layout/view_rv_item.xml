@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="12pt"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/high_press_tv"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="125"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="12pt"
+        android:textColor="@android:color/holo_green_light"
+        android:id="@+id/low_press_tv"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="80"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="12pt"
+        android:textColor="@android:color/holo_red_dark"
+        android:id="@+id/heart_rate_tv"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="67"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="8pt"
+        android:textColor="@android:color/darker_gray"
+        android:id="@+id/create_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="12-12 12:12:12"/>
+</LinearLayout>
